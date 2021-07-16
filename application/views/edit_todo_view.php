@@ -36,7 +36,8 @@
                   <textarea name='description'
                    id='description'
                    class="form-control"
-                   rows="3"><?= $data[0]['text'] ?></textarea>
+                   rows="3"
+                   minlength="3"><?= $data[0]['text'] ?></textarea>
                 </div>
               </div>
             </div>
@@ -47,6 +48,7 @@
         <div class="card">
           <div class="card-body">
             <button type="submit" class="btn btn-block btn-primary">Сохранить</button>
+          <input name='status' type="checkbox" <?php if($data[0]['status'] == 2) echo 'checked' ?> value="2" id='status'>  Завершить
           </div>
         </div>
         <br>
@@ -69,6 +71,15 @@
 
             <div class="form-group">
               <label for="updated_at">Изменено</label>
+              <input name='updated_at' value="<?= $data[0]['updated_at'] ?>"
+                id='updated_at'
+                type="text"
+                class="form-control"
+                disabled="true">
+            </div>
+
+            <div class="form-group">
+              <label for="updated_at">Завершено</label>
               <input name='updated_at' value="<?= $data[0]['updated_at'] ?>"
                 id='updated_at'
                 type="text"
