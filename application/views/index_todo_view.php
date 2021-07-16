@@ -7,10 +7,11 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>имя</th>
+                        <th>id <span><a href='/todo/index/?sort=id&order=ASC'>↑</a>|<a href='/todo/index/?sort=id&order=DESC'>↓</a></span></th>
+                        <th>имя <span><a href="/todo/index/?sort=name&order=ASC">↑</a>|<a href="/todo/index/?sort=name&order=DESC">↓</a></th>
                         <th>задача</th>
-                        <th>email</th>
-                        <th>статус</th>
+                        <th>email <span><a href="/todo/index/?sort=email&order=ASC">↑</a>|<a href="/todo/index/?sort=email&order=DESC">↓</a></th>
+                        <th>статус <span><a href="/todo/index/?sort=status&order=ASC">↑</a>|<a href="/todo/index/?sort=status&order=DESC">↓</a></th>
                         <th>
                             <?php if(checkAuth()) echo 'ред.'; ?>
                         </th>
@@ -19,13 +20,14 @@
                 <tbody>
                     <?php foreach ($data[0] as $column => $row) : ?>
                         <tr>
+                            <td><?=$row['id']?></td>
                             <td><?=$row['name']?></td>
-                            <td><textarea><?=$row['text']?></textarea></td>
+                            <td><?=$row['text']?></td>
                             <td><?=$row['email']?></td>
-                            <td><?=$row['status'] ? 'отредактировано администратором' : ''?></td>
+                            <td><?=$row['status'] ? ($row['status'] == 2 ? 'завершённая задача' : 'отредактировано администратором') : 'открытая задача'?></td>
                             <td>
                                 <?php if(checkAuth()): ?>
-                                    <a href='/todo/edit/?id=<?=$row["id"]?>' >edit</a>
+                                    <a href='/todo/edit/?id=<?=$row["id"]?>' >править</a>
                                 <?php endif; ?>
                             </td>
                         </tr>
